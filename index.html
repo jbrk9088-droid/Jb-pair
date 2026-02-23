@@ -1,308 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      &gt; © Jb PAPA 71 -X ᴍɪɴɪ ʙᴏᴛ
-    </title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet" />
-    <style>
-      :root {
-            --primary: #ff1493;
-            --secondary: #ff69b4;
-            --light: #ffffff;
-            --text-dark: #333;
-            --glass-bg: rgba(255, 255, 255, 0.25);
-            --glass-border: rgba(255, 255, 255, 0.5);
-            --shadow-pink: rgba(255, 20, 147, 0.3);
-            --error: #ff6b6b;
-            --success: #4ade80;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: &#39;Poppins&#39;, sans-serif;
-            background: linear-gradient(to bottom, #ff69b4, #87cefa);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            color: var(--text-dark);
-        }
-        .container {
-            background: var(--glass-bg);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid var(--glass-border);
-            border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15),
-                        0 0 40px var(--shadow-pink);
-            width: 100%;
-            max-width: 500px;
-            padding: 50px 40px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        .container:hover {
-            transform: translateY(-5px);
-        }
-        h1 {
-            font-size: 2.6rem;
-            background: linear-gradient(90deg, #333, var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-        p {
-            color: #444;
-            opacity: 0.9;
-            margin-bottom: 35px;
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-        .input-group {
-            margin-bottom: 30px;
-        }
-        input {
-            width: 100%;
-            padding: 18px 24px;
-            border: 2px solid rgba(255, 20, 147, 0.4);
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50px;
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            outline: none;
-            transition: all 0.4s ease;
-        }
-        input::placeholder { color: #777; }
-        input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 25px var(--shadow-pink);
-            background: rgba(255, 255, 255, 0.7);
-        }
-        button {
-            background: var(--primary);
-            color: var(--light);
-            border: none;
-            padding: 18px;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 20px var(--shadow-pink);
-        }
-        button:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(255, 20, 147, 0.5);
-            background: var(--secondary);
-        }
-        button:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none;
-        }
-        .loader {
-            display: none;
-            margin: 30px auto;
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(255,255,255,0.5);
-            border-top: 5px solid var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JB PAPA 71 BOT</title>
 
-        .result {
-            margin-top: 35px;
-            padding: 30px 25px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 18px;
-            display: none;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .code-box {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
-            background: rgba(255, 255, 255, 0.8);
-            padding: 20px 15px;
-            border-radius: 12px;
-            margin: 20px auto;
-            width: 100%;
-            max-width: 440px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            user-select: all;
-            letter-spacing: 4px;
-            box-shadow: 0 0 20px var(--shadow-pink);
-        }
-        @media (max-width: 480px) {
-            .code-box {
-                font-size: 1.8rem;
-                letter-spacing: 3px;
-                padding: 18px 10px;
-            }
-        }
-        .code-box:hover {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 0 30px rgba(255, 20, 147, 0.5);
-        }
-        .copy-hint {
-            font-size: 0.9rem;
-            color: #555;
-            margin-top: 8px;
-            display: none;
-        }
-        .instructions {
-            font-size: 1rem;
-            color: #555;
-            margin-top: 20px;
-            display: none;
-        }
-        .error-msg, .maintenance {
-            color: var(--error);
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin: 15px 0;
-        }
-        .owner-credit {
-            margin-top: 50px;
-            font-size: 0.95rem;
-            color: #555;
-        }
-        .owner-credit a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .owner-credit a:hover {
-            text-decoration: underline;
-        }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>
-        &gt; © JB PAPA 71-X ᴍɪɴɪ ʙᴏᴛ
-      </h1>
-      <p>
-        secure, seamless, and forever connected.
-      </p>
-      <div class="input-group">
-        <input type="text" id="number" placeholder="e.g. +911234567890" />
-      </div>
-      <button id="getCode">
-        GET CODE
-      </button>
-      <div class="loader" id="loader">
-      </div>
-      <div class="result" id="result">
-        <div id="output-content">
-        </div>
-        <p class="copy-hint" id="copyHint">
-          Tap the code to copy
-        </p>
-        <p class="instructions" id="instructions">
-          Open WhatsApp → Linked Devices → Link with phone number → Enter this code.
-        </p>
-      </div>
-      <div class="owner-credit">
-        Made with ❤️ by
-        <a href="https://t.me/jb_papa71" target="_blank">        Telegram: @Jb_papa71
-</a>
-      </div>
-    </div>
-    <script>
-      const btn = document.getElementById(&#39;getCode&#39;);
-        const loader = document.getElementById(&#39;loader&#39;);
-        const result = document.getElementById(&#39;result&#39;);
-        const outputContent = document.getElementById(&#39;output-content&#39;);
-        const copyHint = document.getElementById(&#39;copyHint&#39;);
-        const instructions = document.getElementById(&#39;instructions&#39;);
+<style>
+body{
+background:#0b0b0b;
+color:white;
+font-family:sans-serif;
+text-align:center;
+}
 
-        btn.addEventListener(&#39;click&#39;, async () =&gt; {
-            const input = document.getElementById(&#39;number&#39;).value.trim();
-            if (!input || isNaN(input.replace(/^\+/, &#39;&#39;))) {
-                alert(&#39;Please enter a valid number (with country code and without + sign)&#39;);
-                return;
-            }
+.container{
+margin-top:40px;
+}
 
-            btn.disabled = true;
-            loader.style.display = &#39;block&#39;;
-            result.style.display = &#39;none&#39;;
-            outputContent.innerHTML = &#39;&#39;;
-            copyHint.style.display = &#39;none&#39;;
-            instructions.style.display = &#39;none&#39;;
+img{
+width:120px;
+border-radius:20px;
+}
 
-            try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() =&gt; controller.abort(), 10000);
+button{
+display:block;
+width:220px;
+margin:10px auto;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#25D366;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
 
-                const res = await fetch(&#39;https://https://api.qasimdev.dpdns.org;, {
-                    method: &#39;POST&#39;,
-                    headers: { &#39;Content-Type&#39;: &#39;application/json&#39; },
-                    body: JSON.stringify({ number: input }),
-                    signal: controller.signal
-                });
+input{
+padding:10px;
+width:200px;
+border-radius:6px;
+border:none;
+margin-top:15px;
+}
+</style>
+</head>
 
-                clearTimeout(timeoutId);
+<body>
 
-                const data = await res.json();
+<div class="container">
 
-                result.style.display = &#39;block&#39;;
+<img src="https://i.imgur.com/yourimage.jpg">
 
-                if (data.success &amp;&amp; data.pairingCode) {
-                    outputContent.innerHTML = `
-                        &lt;div class=&#34;code-box&#34; onclick=&#34;copyCode(this)&#34;&gt;
-                            ${data.pairingCode}
-                        &lt;/div&gt;
-                    `;
-                    copyHint.style.display = &#39;block&#39;;
-                    instructions.style.display = &#39;block&#39;;
-                } else {
-                    const errorMsg = data.message || &#39;Unknown error occurred&#39;;
-                    outputContent.innerHTML = `&lt;div class=&#34;error-msg&#34;&gt;${errorMsg}&lt;/div&gt;`;
-                }
+<h2>JB PAPA 71 WHATSAPP BOT</h2>
 
-            } catch (err) {
-                console.error(err);
-                result.style.display = &#39;block&#39;;
-                outputContent.innerHTML = `
-                    &lt;div class=&#34;maintenance&#34;&gt;
-                        ⚠️ Server is currently under maintenance.&lt;br&gt;
-                        Please try again later.
-                    &lt;/div&gt;
-                `;
-            } finally {
-                btn.disabled = false;
-                loader.style.display = &#39;none&#39;;
-            }
-        });
+<p>Connect your number and run bot</p>
 
-        function copyCode(element) {
-            const text = element.textContent.trim();
-            navigator.clipboard.writeText(text).then(() =&gt; {
-                const original = element.textContent;
-                element.textContent = &#39;Copied!&#39;;
-                element.style.color = &#39;#4ade80&#39;;
-                setTimeout(() =&gt; {
-                    element.textContent = original;
-                    element.style.color = &#39;var(--primary)&#39;;
-                }, 1500);
-            }).catch(() =&gt; {
-                alert(&#39;Copy failed. Please select and copy manually.&#39;);
-            });
-        }
-    </script>
-  </body>
+<input type="text" id="number" placeholder="Enter WhatsApp Number">
+
+<button onclick="connectBot()">CONNECT BOT</button>
+
+<button onclick="menu()">BOT MENU</button>
+
+<button onclick="telegram()">TELEGRAM CHANNEL</button>
+
+<p id="result"></p>
+
+</div>
+
+<script>
+async function connectBot(){
+let number = document.getElementById("number").value
+
+let res = await fetch(`/api/pair?number=${number}`)
+let data = await res.json()
+
+document.getElementById("result").innerText =
+"PAIR CODE : " + data.code
+}
+
+function menu(){
+alert("Bot Commands:\\n/play\\n/song\\n/group\\n/menu")
+}
+
+function telegram(){
+window.open("https://t.me/yourchannel")
+}
+</script>
+
+</body>
 </html>
