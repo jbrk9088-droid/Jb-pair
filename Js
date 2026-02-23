@@ -1,0 +1,15 @@
+import makeWASocket from "@whiskeysockets/baileys"
+
+export default async function handler(req, res) {
+
+let number = req.query.number
+
+let code = Math.floor(100000 + Math.random() * 900000)
+
+res.status(200).json({
+status: true,
+number: number,
+code: code
+})
+
+}
